@@ -1,7 +1,4 @@
-
 import React, { Component } from "react"
-
-
 
 
 export default class SearchList extends Component {
@@ -10,14 +7,9 @@ export default class SearchList extends Component {
     return (
       <section className="searchList">
         {
-          this.props.selectedShow.map(show => {
-            return (<div className="poster-Group" key={show.apiID}>
-              <div>
-                <img className="poster-Image" src={`https://image.tmdb.org/t/p/w300${show.image}`} alt="tv-poster" />
-              </div>
-              <div>
-            <SearchModal {...this.props} show={show} />
-            </div>
+          this.props.searchedBooks.map(volumes => {
+            return (
+            <div className="poster-Group" key={volumes.items.volumeinfo.id}>
             </div>
             )
           }
@@ -26,3 +18,4 @@ export default class SearchList extends Component {
       </section>
     )
   }
+}

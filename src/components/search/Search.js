@@ -1,49 +1,48 @@
 import React, { Component } from "react"
-// import ApiManager from "../../module/ApiManager"
+import DataManager from "../../module/DataManager"
 // import SearchList from "./SearchList"
 
 export default class Search extends Component {
 
   state = {
-    searchedBooks: []
+    searchedBooks: [],
+    query: {}
   }
 
   // Update state whenever an input field is edited
   handleFieldChange = evt => {
-    const stateToChange = {}
-    stateToChange[evt.target.id] = evt.target.value
-    this.setState(stateToChange)
+    this.setState({query: evt.target.value})
   }
+  // Get data from remoteURL on button click
+  handleButtonClick = evt => {
+    DataManager.getAll("volumes", this.state.query)
+    .then(result =>
+      // console.log(result.items))
+      this.listToDom(result.items)).then((searchedBooks)=> this.setState({searchedBooks: searchedBooks}))
 
-  constructNewSearch = evt => {
-    console.log(evt)
-    // let selectedBooks = []
-    evt.preventDefault()
-    // const credentials = JSON.parse(sessionStorage.getItem('credentials'))
-    // const url = `${remoteSearchURL}/`
-    // return fetch(url)
-    //   .then(data => data.json())
-    //   .then(data => {
-    //     return data.results.map(data => {
-    //       if (data.volumes) {
-    //         let newBookObject = {
-    //           volumeId: volumes.items.id,
-    //           image: volumes.items.volumeInfo.imageLinks.thumbnail,
-    //           title: volumes.items.volumeInfo.title,
-    //           author: volumes.itms.volumeInfo.authors,
-    //           description: volumes.volumeInfo.description,
-    //           credentials: credentials
-    //         }
-    //         return newBookObject.push(selectedBooks)
-    //       }
-    //     })
+  }
+  // Take data and create an object with it
+  listToDom = (result) => {
+    let searchedBooks = []
+    return result.map(result => {
+      // if(result.volumes){
+        let newBookItem = {
+          volumeId: result.volumeInfo.id,
+          image: result.volumeInfo.imageLinks.thumbnail,
+          title: result.volumeInfo.title,
+          author: result.volumeInfo.authors,
+          description: result.volumeInfo.description
+        }
+        searchedBooks.push(newBookItem)
+return searchedBooks
 
+      // }
+    })
 
-    //   })
-    //   .then(() => this.setState({ new: selectedBooks }))
   }
 
   render() {
+    console.log(this.state.searchedBooks)
     return (
       <React.Fragment>
         <div>
@@ -53,9 +52,9 @@ export default class Search extends Component {
             type="text"
             id="search"
             placeholder="Enter Book Title" />
-          <button type="submit" onClick={this.constructNewSearch} className="btn btn-primary">Submit</button>
+          <button type="submit" onClick={this.handleButtonClick} className="btn btn-primary">Submit</button>
         </div>
-        {/* <SearchList {...this.props}  selectedShow={this.state.selectedShows} /> */}
+        {/* <SearchList {...this.props}  searchedBooks={this.state.searchedBooks} /> */}
       </React.Fragment>
     )
   }
