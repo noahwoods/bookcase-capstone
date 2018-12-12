@@ -11,10 +11,10 @@ export default class ToReadShelf extends Component {
   }
   componentDidMount() {
     let readShelf = []
-    this.props.volumes.filter((volumes => this.credentials === userId))
+    this.props.volumes.filter((volumes => this.credentials === volumes.userId))
     .map(volumes => {
-      // TODO: what to put in query field
-      const url = `https://www.googleapis.com/books/v1/volumes?q=${volumes.id}>&key=AIzaSyCpwmsG50yStRmHpnHwKZrwJhGfg-4aZUk`
+
+      const url = `http://localhost:5002/toReadShelf`
       return fetch(url)
         .then(data => data.json())
         .then(data => {
@@ -24,7 +24,6 @@ export default class ToReadShelf extends Component {
             title: volumes.items.volumeInfo.title,
             author: volumes.itms.volumeInfo.authors,
             description: volumes.volumeInfo.description,
-            apiID: data.id
           }
           readShelf.push(bookObject)
           this.setState({
@@ -40,7 +39,7 @@ export default class ToReadShelf extends Component {
       <section className="readShelf">
         {
           this.state.showArray.map(volume => {
-            return (<div className="poster-Group" key={volume.id}>
+            return (<div key={volume.id}>
               <div>
               <h2>Read Shelf</h2>
               </div>

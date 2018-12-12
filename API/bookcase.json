@@ -1,11 +1,12 @@
 {
-  "users":[
-
+  "users": [
+    {
+      "username": "noah",
+      "email": "noah@noah",
+      "password": "noah",
+      "id": 1
+    }
   ],
-  "readShelf":[
-
-  ],
-  "toReadShelf":[
-
-  ]
+  "readShelf": [],
+  "toReadShelf": []
 }

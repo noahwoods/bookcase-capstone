@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-// import AppViews from "./AppViews"
+import ApplicationViews from "./ApplicationViews"
 import NavBar from "./nav/Navbar"
 
 // import "./Nutshell.css"
@@ -11,7 +11,7 @@ export default class Nutshell extends Component {
         return (
             <React.Fragment>
               <NavBar />
-              {/* <AppViews /> */}
+              <ApplicationViews />
             </React.Fragment>
         )
     }

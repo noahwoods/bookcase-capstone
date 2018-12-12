@@ -19,14 +19,15 @@ export default class Login extends Component {
         e.preventDefault()
 
 
-        DataManager.getAll("users").then((user) => {
+        DataManager.getData("users").then((user) => {
+          console.log(user)
             const users = user.find(user => {
                 return user.email === this.state.email && user.password === this.state.password
             })
 
             if (users) {
                 localStorage.setItem("credentials", JSON.stringify(users))
-                document.location.href = 'http://localhost:3000/profile'
+                document.location.href = 'http://localhost:3000/'
             } else {
                 alert("Please register before trying to login")
                 document.location.href = 'http://localhost:3000/register'

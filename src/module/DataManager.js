@@ -1,6 +1,6 @@
 
 const localURL = "http://localhost:5002"
-const remoteSearchURL= "https://www.googleapis.com/books/v1/volumes?q=${volume.id}>&key=AIzaSyCpwmsG50yStRmHpnHwKZrwJhGfg-4aZUk"
+const remoteSearchURL= "https://www.googleapis.com/books/v1/"
 const apiKey = "AIzaSyCpwmsG50yStRmHpnHwKZrwJhGfg-4aZUk"
 
 export default Object.create(null, {
@@ -19,8 +19,8 @@ export default Object.create(null, {
   },
 
   getAll: {
-    value: (resource) => {
-      return fetch(`${remoteSearchURL}/${resource}`)
+    value: (resource, query) => {
+      return fetch(`${remoteSearchURL}/${resource}?q=${query}&key=${apiKey}`)
         .then(result => result.json())
     }
   },
