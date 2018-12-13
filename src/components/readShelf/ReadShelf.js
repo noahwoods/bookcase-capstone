@@ -31,22 +31,28 @@ export default class ReadShelf extends Component {
     console.log(this.state)
     return (
       <React.Fragment>
-        {/* <section>
-          this.state.events.map(events =>
-        <div key="{volumes.items.id">
-            {volumes.items.volumeInfo.imageLinks.thumbnail}
-          </div>
-          <div>
-            {volumes.items.volumeInfo.title}
-          </div>
-          <div>
-            {volumes.items.volumeInfo.authors}
-          </div>
-          <div>
-            {volumes.items.volumeInfo.description}
-          </div>
+      {/* <section className="searchList">
+        {
+          this.props.searchedBooks.map(book =>
 
-        </section> */}
+            <div key={(book.volumeId)}>
+            <div>
+              {book.image}
+            </div>
+            <div>
+              {book.title}
+            </div>
+            <div>
+              {book.author}
+            </div>
+            <div>
+            {book.description}
+            </div>
+            </div>
+
+          )
+        }
+      </section> */}
       </React.Fragment>
 
     )

@@ -43,21 +43,21 @@ return newBookItem
     }
 
 
-  saveBook = evt => {
-    evt.preventDefault()
+  // saveBook = evt => {
+  //   evt.preventDefault()
 
-    const createBook = {
-      volumeId: this.state.volumeId,
-      image: this.state.image,
-      title: this.state.title,
-      author: this.state.author,
-      description: this.state.description
+  //   const createBook = {
+  //     volumeId: this.state.volumeId,
+  //     image: this.state.image,
+  //     title: this.state.title,
+  //     author: this.state.author,
+  //     description: this.state.description
 
-    }
+  //   }
 
-    this.props.addBook(createBook).then(() => this.props.history.push("/readShelf"))
+  //   this.props.addBook(createBook).then(() => this.props.history.push("/readShelf"))
 
-  }
+  // }
 
   render() {
     console.log(this.state.searchedBooks)
@@ -72,7 +72,7 @@ return newBookItem
             placeholder="Enter Book Title" />
           <button type="submit" onClick={this.handleButtonClick} className="btn btn-primary">Search</button>
         </div>
-        <SearchList {...this.props}  searchedBooks={this.state.searchedBooks} />
+        <SearchList {...this.props}  searchedBooks={this.state.searchedBooks}{...this.props} />
       </React.Fragment>
     )
   }
