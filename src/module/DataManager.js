@@ -20,7 +20,7 @@ export default Object.create(null, {
 
   getAll: {
     value: (resource, query) => {
-      console.log(`${remoteSearchURL}/${resource}?q=${query}&key=${apiKey}`)
+
       return fetch(`${remoteSearchURL}/${resource}?q=${query}&key=${apiKey}`)
         .then(result => result.json())
     }

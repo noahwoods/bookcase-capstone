@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom'
 import React, { Component } from "react"
 import DataManager from '../module/DataManager'
-// import ReadShelf from './readShelf/ReadShelf'
+import ReadShelf from './readShelf/ReadShelf'
 // import ToReadShelf from './toReadShelf/ToReadShelf'
 import Login from './login/LoginForm'
 import Register from './login/RegisterForm'
@@ -40,7 +40,7 @@ export default class ApplicationViews extends Component {
       users: users
     }))
 
-  addBook = books => DataManager.save("books", books)
+  addBook = books => DataManager.saveData("books", books)
     .then(() => DataManager.getData("books"))
     .then(books => this.setState({
       books: books
@@ -56,17 +56,17 @@ export default class ApplicationViews extends Component {
   componentDidMount() {
     const newState = {}
 
-    DataManager.getAll("users")
+    DataManager.getData("users")
       .then(allUsers => {
         newState.users = allUsers
       })
 
-    DataManager.getAll("readShelf")
+    DataManager.getData("readShelf")
       .then(allRead => {
         newState.readShelf = allRead
       })
 
-    DataManager.getAll("toReadShelf")
+    DataManager.getData("toReadShelf")
       .then(allToRead => {
         newState.toReadShelf = allToRead
       })
@@ -91,10 +91,13 @@ export default class ApplicationViews extends Component {
         }} />
         <Route exact path="/login" component={Login} />
 
-         <Route path="/search" render={(props) => {
-          return <Search getShows={this.getShows} {...props} />
+        <Route exact path ="/readShelf" render={(props) => {
+          return <ReadShelf {...props} />
+        }}/>
+        <Route exact path="/search" render={(props) => {
+          return <Search {...props}
+          addBook={this.addBook} />
         }} />
-
       </React.Fragment>
     )
   }

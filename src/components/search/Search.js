@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import DataManager from "../../module/DataManager"
-// import SearchList from "./SearchList"
+import SearchList from "./SearchList"
 
 export default class Search extends Component {
 
@@ -16,28 +16,46 @@ export default class Search extends Component {
   // Get data from remoteURL on button click
   handleButtonClick = evt => {
     DataManager.getAll("volumes", this.state.query)
-    .then(result =>
-      // console.log(result.items))
-      this.listToDom(result.items)).then((searchedBooks)=> this.setState({searchedBooks: searchedBooks}))
-
+    .then(result => {
+        const resultData = result.items
+      console.log(result.items)
+      const searchedBooks = resultData.map(item => this.listToDom(item))
+      console.log(searchedBooks)
+      this.setState({searchedBooks: searchedBooks})
+    }
+    )
   }
+
   // Take data and create an object with it
-  listToDom = (result) => {
-    let searchedBooks = []
-    return result.map(result => {
-      // if(result.volumes){
+  listToDom = (item) => {
+    // let searchedBooks = []
+
         let newBookItem = {
-          volumeId: result.volumeInfo.id,
-          image: result.volumeInfo.imageLinks.thumbnail,
-          title: result.volumeInfo.title,
-          author: result.volumeInfo.authors,
-          description: result.volumeInfo.description
+          volumeId: item.id,
+          image: item.volumeInfo.imageLinks.thumbnail,
+          title: item.volumeInfo.title,
+          author: item.volumeInfo.authors,
+          description: item.volumeInfo.description
         }
-        searchedBooks.push(newBookItem)
-return searchedBooks
+return newBookItem
 
       // }
-    })
+    }
+
+
+  saveBook = evt => {
+    evt.preventDefault()
+
+    const createBook = {
+      volumeId: this.state.volumeId,
+      image: this.state.image,
+      title: this.state.title,
+      author: this.state.author,
+      description: this.state.description
+
+    }
+
+    this.props.addBook(createBook).then(() => this.props.history.push("/readShelf"))
 
   }
 
@@ -52,9 +70,9 @@ return searchedBooks
             type="text"
             id="search"
             placeholder="Enter Book Title" />
-          <button type="submit" onClick={this.handleButtonClick} className="btn btn-primary">Submit</button>
+          <button type="submit" onClick={this.handleButtonClick} className="btn btn-primary">Search</button>
         </div>
-        {/* <SearchList {...this.props}  searchedBooks={this.state.searchedBooks} /> */}
+        <SearchList {...this.props}  searchedBooks={this.state.searchedBooks} />
       </React.Fragment>
     )
   }
