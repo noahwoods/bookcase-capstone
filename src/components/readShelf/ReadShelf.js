@@ -1,55 +1,55 @@
 import React, { Component } from "react"
 import DataManager from '../../module/DataManager'
 
-
 export default class ReadShelf extends Component {
+  credentials = JSON.parse(localStorage.getItem('credentials'))
 
   state = {
     readShelf: []
   }
+
+  // deleteBook = (events, id) => {
+  //   DataManager.delete("events", id)
+  //   .then(() => DataManager.getAllByUser("events", this.credentials.id))
+  //   .then(allEvents => this.setState({
+  //     events: allEvents
+  //   })
+  //   )
+  // }
+
   componentDidMount() {
-    let readShelf = []
-    this.props.volumes.filter((volumes => this.credentials === volumes.userId))
-    .map(volumes => {
-
-      const url = `http://localhost:5002/readShelf`
-      return fetch(url)
-        .then(data => data.json())
-        .then(data => {
-          let bookObject = {
-            volumeId: volumes.items.id,
-            image: volumes.items.volumeInfo.imageLinks.thumbnail,
-            title: volumes.items.volumeInfo.title,
-            author: volumes.itms.volumeInfo.authors,
-            description: volumes.volumeInfo.description
-          }
-          readShelf.push(bookObject)
-          this.setState({
-            readShelf: readShelf })
-        })
-
-    })
+    const newState = {}
+    DataManager.getData("volumes", this.credentials.id)
+      .then(readShelf => {
+        newState.readShelf = readShelf
+      })
+      .then(() =>
+        this.setState(newState))
   }
 
   render() {
-
+    console.log(this.state)
     return (
-      <section className="readShelf">
-        {
-          this.state.readShelf.map(volume => {
-            return (<div key={volume.id}>
-              <div>
-              <h2>Read Shelf</h2>
-              </div>
-              <div>
-              {/* <DetailsModal show={show} /> */}
-              </div>
-            </div>
-            )
-          }
-          )
-        }
-      </section>
+      <React.Fragment>
+        {/* <section>
+          this.state.events.map(events =>
+        <div key="{volumes.items.id">
+            {volumes.items.volumeInfo.imageLinks.thumbnail}
+          </div>
+          <div>
+            {volumes.items.volumeInfo.title}
+          </div>
+          <div>
+            {volumes.items.volumeInfo.authors}
+          </div>
+          <div>
+            {volumes.items.volumeInfo.description}
+          </div>
+
+        </section> */}
+      </React.Fragment>
+
     )
   }
+
 }

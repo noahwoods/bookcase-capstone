@@ -1,57 +1,45 @@
-import React, { Component } from "react"
+// import React, { Component } from "react"
+// import DataManager from '../../module/DataManager'
 
-export default class ToReadShelf extends Component {
+// export default class ToReadShelf extends Component {
 
-  state = {
-    toReadShelf: []
-  }
+//   state = {
+//     toReadShelf: []
+//   }
 
-  state = {
-    readShelf: []
-  }
-  componentDidMount() {
-    let readShelf = []
-    this.props.volumes.filter((volumes => this.credentials === volumes.userId))
-    .map(volumes => {
+//   state = {
+//     readShelf: []
+//   }
+//   componentDidMount() {
+//     const newState = {}
+//     DataManager.getAll("volumes", this.credentials.id)
+//       .then(readShelf => {
+//         newState.readShelf = readShelf
+//       })
+//       .then(() =>
+//         this.setState(newState))
+//   }
 
-      const url = `http://localhost:5002/toReadShelf`
-      return fetch(url)
-        .then(data => data.json())
-        .then(data => {
-          let bookObject = {
-            volumeId: volumes.items.id,
-            image: volumes.items.volumeInfo.imageLinks.thumbnail,
-            title: volumes.items.volumeInfo.title,
-            author: volumes.itms.volumeInfo.authors,
-            description: volumes.volumeInfo.description,
-          }
-          readShelf.push(bookObject)
-          this.setState({
-            readShelf: readShelf })
-        })
+//   render() {
+//     return (
+//       <React.Fragment>
+//         <section>
+//           this.state.events.map(events =>
+//         <div key="{volumes.items.id">
+//             {volumes.items.volumeInfo.imageLinks.thumbnail}
+//           </div>
+//           <div>
+//             {volumes.items.volumeInfo.title}
+//           </div>
+//           <div>
+//             {volumes.items.volumeInfo.authors}
+//           </div>
+//           <div>
+//             {volumes.items.volumeInfo.description}
+//           </div>
+//         </section>
+//       </React.Fragment>
 
-    })
-  }
-
-  render() {
-
-    return (
-      <section className="readShelf">
-        {
-          this.state.showArray.map(volume => {
-            return (<div key={volume.id}>
-              <div>
-              <h2>Read Shelf</h2>
-              </div>
-              <div>
-              {/* <DetailsModal show={show} /> */}
-              </div>
-            </div>
-            )
-          }
-          )
-        }
-      </section>
-    )
-  }
-}
+//     )
+//   }
+// }
