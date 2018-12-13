@@ -40,10 +40,10 @@ export default class ApplicationViews extends Component {
       users: users
     }))
 
-  addBook = books => DataManager.saveData("books", books)
-    .then(() => DataManager.getData("books"))
+  addBook = books => DataManager.saveData("readShelf", books)
+    .then(() => DataManager.getData("readShelf"))
     .then(books => this.setState({
-      books: books
+      readShelf: books
     }))
 
 
@@ -69,11 +69,6 @@ export default class ApplicationViews extends Component {
     DataManager.getData("toReadShelf")
       .then(allToRead => {
         newState.toReadShelf = allToRead
-      })
-
-    DataManager.getAll("search")
-      .then(allNews => {
-        newState.news = allNews
       })
       .then(() =>
         this.setState(newState))

@@ -1,10 +1,31 @@
 import React, { Component } from "react"
 
 
+
 export default class SearchList extends Component {
 
+
+
+  saveBook = (evt) => {
+    // evt.preventDefault()
+    const bookId = evt.target.id
+    const book = this.props.searchedBooks.find(book=> book.volumeId === bookId)
+
+    // const createBook = {
+    //   volumeId: book.volumeId,
+    //   image: book.image,
+    //   title: book.title,
+    //   author: book.author,
+    //   description: book.description
+
+    // }
+console.log("save", book)
+    this.props.addBook(book).then(() => this.props.history.push("/readShelf"))
+
+  }
+
+
   render() {
-    console.log(this.props)
     return (
       <section className="searchList">
         {
@@ -23,7 +44,7 @@ export default class SearchList extends Component {
             <div>
             {book.description}
             </div>
-            {/* <button type="submit" onClick={this.props.addBook("volumes", book)} color="blue">Save</button> */}
+            <button type="submit" id={book.volumeId} onClick={this.saveBook} color="blue">Save</button>
             </div>
 
           )
@@ -32,3 +53,4 @@ export default class SearchList extends Component {
     )
   }
 }
+// this.saveBook("volumes", book)

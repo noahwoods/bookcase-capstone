@@ -7,6 +7,27 @@
       "id": 1
     }
   ],
-  "readShelf": [],
+  "readShelf": [
+    {
+      "volumeId": "xJNFDwAAQBAJ",
+      "image": "http://books.google.com/books/content?id=xJNFDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "title": "Hello Hello",
+      "author": [
+        "Brendan Wenzel"
+      ],
+      "description": "A new picture book from Brendan Wenzel, the New York Times bestselling and Caldecott Honor-winning author of They All Saw a Cat! Hello, Hello! Beginning with two cats, one black and one white, a chain of animals appears before the reader, linked together by at least one common trait. From simple colors and shapes to more complex and abstract associations, each unexpected encounter celebrates the magnificent diversity of our world—and ultimately paints a story of connection. Brendan Wenzel's joyous, rhythmic text and exuberant art encourage readers to delight in nature's infinite differences and to look for—and marvel at—its gorgeous similarities. It all starts with a simple \"Hello.\" The book includes: • An afterword from author Brendan Wenzel about the importance of conservation and protecting the wildlife on our planet. • A glossary of the animals featured in the book and a notation on their status (Near Threatened, Vulnerable, Endangered, or Critically Endangered).",
+      "id": 1
+    },
+    {
+      "volumeId": "f3q6mwEACAAJ",
+      "image": "http://books.google.com/books/content?id=f3q6mwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "title": "The Fellowship of the Ring",
+      "author": [
+        "John Ronald Reuel Tolkien"
+      ],
+      "description": "Fantasy fiction. When they were first published, THE HOBBIT and THE LORD OF THE RINGS became instant classics. Treasured by readers young and old, these works of sweeping fantasy, steeped in unrivalled magic and otherworldliness have sold more than 150 million copies around the world. This new boxed set contains both titles and features brand new cover designs. It offers readers a new opportunity to discover Tolkien's remarkable world of Middle-earth and to follow the complete story of Bilbo Baggins and the Hobbits' part in the epic quest for the Ring beginning with Bilbo's fateful visit from Gandalf and culminating in the dramatic climax between Frodo and Gollum atop Mount Doom.",
+      "id": 2
+    }
+  ],
   "toReadShelf": []
 }
