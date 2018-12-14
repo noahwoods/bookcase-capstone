@@ -17,9 +17,18 @@ export default class ReadShelf extends Component {
   //   )
   // }
 
+
+  deleteBook = (evt) => {
+    // evt.preventDefault()
+    const bookId = evt.target.id
+    const book = this.state.readShelf.find(book=> book.volumeId === bookId)
+    console.log(this.state.readShelf)
+  }
+
+
   componentDidMount() {
     const newState = {}
-    DataManager.getData("volumes", this.credentials.id)
+    DataManager.getData("readShelf", this.credentials.id)
       .then(readShelf => {
         newState.readShelf = readShelf
       })
@@ -31,9 +40,9 @@ export default class ReadShelf extends Component {
     console.log(this.state)
     return (
       <React.Fragment>
-      {/* <section className="searchList">
+      {/* <section className="readList"> */}
         {
-          this.props.searchedBooks.map(book =>
+          this.state.readShelf.map(book =>
 
             <div key={(book.volumeId)}>
             <div>
@@ -48,11 +57,11 @@ export default class ReadShelf extends Component {
             <div>
             {book.description}
             </div>
+            <button type="submit" id={book.volumeId} onClick={this.deleteBook}>Delete</button>
             </div>
-
           )
         }
-      </section> */}
+      {/* </section> */}
       </React.Fragment>
 
     )

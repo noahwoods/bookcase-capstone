@@ -19,7 +19,7 @@ export default class SearchList extends Component {
     //   description: book.description
 
     // }
-console.log("save", book)
+
     this.props.addBook(book).then(() => this.props.history.push("/readShelf"))
 
   }

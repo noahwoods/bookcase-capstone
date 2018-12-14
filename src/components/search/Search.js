@@ -28,8 +28,6 @@ export default class Search extends Component {
 
   // Take data and create an object with it
   listToDom = (item) => {
-    // let searchedBooks = []
-
         let newBookItem = {
           volumeId: item.id,
           image: item.volumeInfo.imageLinks.thumbnail,
@@ -39,28 +37,9 @@ export default class Search extends Component {
         }
 return newBookItem
 
-      // }
     }
 
-
-  // saveBook = evt => {
-  //   evt.preventDefault()
-
-  //   const createBook = {
-  //     volumeId: this.state.volumeId,
-  //     image: this.state.image,
-  //     title: this.state.title,
-  //     author: this.state.author,
-  //     description: this.state.description
-
-  //   }
-
-  //   this.props.addBook(createBook).then(() => this.props.history.push("/readShelf"))
-
-  // }
-
   render() {
-    console.log(this.state.searchedBooks)
     return (
       <React.Fragment>
         <div>
